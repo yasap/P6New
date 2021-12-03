@@ -6,7 +6,7 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/api/sauces
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzgzMDIxMTgsImV4cCI6MTYzODM4ODUxOH0.FbI-ypPquY1siU_Nbs86a9YeqGvIvSmWJgKif75rxA8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzg1Mzg4OTgsImV4cCI6MTYzODYyNTI5OH0.1wYPHOikIqIFKH_uMO8dqQZpZy5eWwuDf_5gxEgPW54
 
 {"sauce":{
       "userId": "618195f04c335d33403ea4d9",
@@ -24,19 +24,52 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzgzMDIxM
  }}
 ###
 PUT  http://localhost:3000/api/sauces/:id 
-Content-Type: : Content-Type: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzg1Mzg4OTgsImV4cCI6MTYzODYyNTI5OH0.1wYPHOikIqIFKH_uMO8dqQZpZy5eWwuDf_5gxEgPW54
+
+{"sauce":{
+      "userId": "618195f04c335d33403ea4d9",
+      "name": "abcd",
+      // imageUrl: url + '/images/' + req.file.filename,
+      "imageUrl":"http://localhost:3000/images/vcam_4.jpg1637094589315.jpg",
+      "description": "vcvcvcvc",
+      "heat": 3,
+      "mainPepper": "mainPepper",
+      "manufacturer": "manufacturer",
+      //"likes": 0,
+      //"dislikes": 0,
+      //"usersLiked": [],
+      //"usersDisliked": []
+ }}
 //{"email":"uthaipriya33@amazon.com" ,"password":"Priya11" }
+
 ###
 DELETE  http://localhost:3000/api/sauces/:id 
-Content-Type: : Content-Type: application/json
-{"email":"uthaipriya33@amazon.com" ,"password":"Priya11" }
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzg1Mzg4OTgsImV4cCI6MTYzODYyNTI5OH0.1wYPHOikIqIFKH_uMO8dqQZpZy5eWwuDf_5gxEgPW54
+
+{"sauce":{
+      "userId": "618195f04c335d33403ea4d9",
+      "name": "abcd",
+      // imageUrl: url + '/images/' + req.file.filename,
+      "imageUrl":"http://localhost:3000/images/vcam_4.jpg1637094589315.jpg",
+      "description": "vcvcvcvc",
+      "heat": 3,
+      "mainPepper": "mainPepper",
+      "manufacturer": "manufacturer",
+     // "likes": 0,
+      //"dislikes": 0,
+      //"usersLiked": [],
+      //"usersDisliked": []
+ }}
+//{"email":"uthaipriya33@amazon.com" ,"password":"Priya11" }
 
 ###
 POST  http://localhost:3000/api/sauces/:id/like
-Content-Type: : Content-Type: application/json
-{"email":"uthaipriya33@amazon.com" ,"password":"Priya11" }
+Content-Type: : application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzg1Mzg4OTgsImV4cCI6MTYzODYyNTI5OH0.1wYPHOikIqIFKH_uMO8dqQZpZy5eWwuDf_5gxEgPW54
 
-
+//{"email":"uthaipriya33@amazon.com" ,"password":"Priya11" }
 {
     "sauce": {
     "name": "spicy",
