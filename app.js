@@ -7,7 +7,7 @@ const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauces')
 const path = require('path');
 const app = express();
-
+const cors = require('cors');
 
 
 // const User = require("./models/user.js");
@@ -21,13 +21,9 @@ mongoose.connect("mongodb+srv://Piriya:Testuno@cluster0.v0k8d.mongodb.net/myFirs
     console.log('Error on connecting to Mongodb Atlas');
     console.error(error);
   })
- 
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*")
-  res.setHeader("Access-Control-Allow-Method", "PUT, GET, DELETE, POST")
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, authorization, Content, X-Requested-With")
-  next()
-})
+app.use(cors());
+app.options("*", cors());
+
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
   app.use(bodyParser.urlencoded({extended:true}));

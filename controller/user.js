@@ -11,11 +11,12 @@ exports.signup = (req, res, next) => {
             });
            
           newUser.save().then(
-              () => {
+            () => {
                 res.status(201).json({
                   message: 'User added successfully!'
                 });
-              }
+            }
+            
             ).catch(
               (error) => {
                 res.status(500).json({
@@ -39,24 +40,24 @@ exports.login = (req, res, next) => {
     user.findOne({ email: req.body.email }).then(
           (loggedin) => {
             if (!loggedin) {
-              return res.status(401).json({
+              res.status(401).json({
                 error:'User not found!'
               });
             }
             bcrypt.compare(u.password, loggedin.password).then(
               (valid) => {
                 if (!valid) {
-                  return res.status(401).json({
+                  res.status(401).json({
                     error: 'Incorrect password!'
                   });
                 }
                 const token = jwt.sign(
-                    {userId:user._id},
+                    {userId:loggedin._id.toString()},
                     'I_LIKE_WEBDEVELOPMET_AND_I_WOULD_LIKE_TO_BECOME_A_DEVELOPER',
                     {expiresIn:'24h'}
                 );
                 res.status(200).json({
-                  userId: user._id,
+                  userId:loggedin._id.toString(),
                   token: token
                 });
               }

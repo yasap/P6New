@@ -17,7 +17,7 @@ exports.getAllSauces = (req,res,next)=>{
   };
   //get one sauces by id 
   exports.getOnesauces = (req,res,next)=>{
-    sauce.findOne({
+    sauces.findOne({
       _id: req.params.id
     }).then(
       (sauce) => {
@@ -35,20 +35,19 @@ exports.getAllSauces = (req,res,next)=>{
   };
   // create the sauces
 exports.createsauces = (req, res, next) => {
-  req.body.sauce = JSON.parse(req.body.sauce);
+ var mysauce = JSON.parse(req.body.sauce);
   console.log("test: ",req.body.sauce);
  
-  // const url = req.protocol + '://' + req.get('host');
+  const url = req.protocol + '://' + req.get('host');
   
   const sauce = new sauces({
-      userId: req.body.sauce.userId,
-      name: req.body.sauce.name,
-      // imageUrl: url + '/images/' + req.file.filename,
-      imageUrl :req.body.sauce.imageUrl,
-      description: req.body.sauce.description,
-      heat: req.body.sauce.heat,
-      mainPepper: req.body.sauce.mainPepper,
-      manufacturer: req.body.sauce.manufacturer,
+      userId: mysauce.userId,
+      name: mysauce.name,
+      imageUrl: url + '/images/' + req.file.filename,
+      description: mysauce.description,
+      heat: mysauce.heat,
+      mainPepper: mysauce.mainPepper,
+      manufacturer: mysauce.manufacturer,
       likes: 0,
       dislikes: 0,
       usersLiked: [],
@@ -73,33 +72,34 @@ exports.createsauces = (req, res, next) => {
 
 
 exports.modifysauces = (req, res, next) => {
-  console.log("test: ",req.body);
-let sauce = new sauces({ _id: req.params.id });
+  console.log("test: ", req.body);
+  var mysauce;
 if (req.file) {
   const url = req.protocol + "://" + req.get("host");
-  req.body.sauce = JSON.parse(req.body.sauce);
+  mysauce = JSON.parse(req.body.sauce);
   
-  sauce = {
+  var sauce = new sauces ({
     _id: req.params.id,
-    userId: req.body.sauce.userId,
-    name: req.body.sauce.name,
-    manufacturer: req.body.sauce.manufacturer,
-    description: req.body.sauce.description,
-    mainPepper: req.body.sauce.mainPepper,
-    //imageUrl: url + "/images/" + req.file.filename,
-    imageUrl :req.body.sauce.imageUrl,
-    heat: req.body.sauce.heat,
-  };
-}else {
-  sauce = {
+    userId: mysauce.userId,
+    name: mysauce.name,
+    manufacturer: mysauce.manufacturer,
+    description: mysauce.description,
+    mainPepper: mysauce.mainPepper,
+    imageUrl: url + "/images/" + req.file.filename,
+    heat: mysauce.heat,
+  });
+} else {
+  mysauce = req.body;
+ var sauce = new sauces ({
     _id: req.params.id,
-    userId: req.body.userId,
-    name: req.body.name,
-    manufacturer: req.body.manufacturer,
-    description: req.body.description,
-    mainPepper: req.body.mainPepper,
-    heat: req.body.heat,
-  };
+    userId: mysauce.userId,
+    name: mysauce.name,
+    manufacturer: mysauce.manufacturer,
+    description: mysauce.description,
+    mainPepper: mysauce.mainPepper,
+    imageUrl: mysauce.imageUrl,
+    heat: mysauce.heat,
+  });
 }
     sauces.updateOne({ _id: req.params.id }, sauce).then(
         () => {
