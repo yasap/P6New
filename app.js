@@ -10,8 +10,6 @@ const app = express();
 const cors = require('cors');
 
 
-// const User = require("./models/user.js");
-// const bcrypt = require("bcrypt");
 mongoose.connect("mongodb+srv://Piriya:Testuno@cluster0.v0k8d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
   .then(() => {
     console.log('successfully connected to Mongodb Atlas')
@@ -34,4 +32,3 @@ app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
 module.exports = app;
 
-//  login , findone , sauses , mongose 

@@ -1,6 +1,6 @@
 const sauces = require('../models/sauces');
 const fs = require('fs');
-//get all sauces
+
 exports.getAllSauces = (req,res,next)=>{
     sauces.find().then(
       (result) => {
@@ -15,7 +15,7 @@ exports.getAllSauces = (req,res,next)=>{
     );
 
   };
-  //get one sauces by id 
+  
   exports.getOnesauces = (req,res,next)=>{
     sauces.findOne({
       _id: req.params.id
@@ -33,7 +33,7 @@ exports.getAllSauces = (req,res,next)=>{
     );
 
   };
-  // create the sauces
+  
 exports.createsauces = (req, res, next) => {
  var mysauce = JSON.parse(req.body.sauce);
   console.log("test: ",req.body.sauce);
@@ -58,7 +58,7 @@ exports.createsauces = (req, res, next) => {
           res.status(201).json({
               message: 'New sauce added to database successfully!'
           }); 
-      // created 
+      
       }
   ).catch(
       (error) => {
@@ -68,7 +68,7 @@ exports.createsauces = (req, res, next) => {
       }
   );
 };
-// server error
+
 
 
 exports.modifysauces = (req, res, next) => {
@@ -105,15 +105,15 @@ if (req.file) {
         () => {
     res.status(201).json({ message: "Sauce updated successfully¡" });
       })
-      // created 
+      
   .catch((error) => {
     res.status(404).json({ error: error });
   });
 };
-// Not Found
 
 
-// delete the sauces
+
+
   exports.deletesauces = (req, res, next) => {
     sauces.findOne({_id: req.params.id}).then(
       (sauce) => {
@@ -125,7 +125,7 @@ if (req.file) {
                 message: 'Deleted!'
               });
             }
-            // ok
+           
           ).catch(
             (error) => {
               res.status(400).json({
@@ -137,19 +137,19 @@ if (req.file) {
       }
     );
   };
-  //Bad Request
+ 
 
 
 
 exports.likeSauces = (req, res, next) => {
-   //  likes the sauce
+  
     sauces.findOne({_id: req.params.id}).then((sauce) => {
           if (req.body.like == 1) {
           sauce.usersLiked.push(req.body.userId)
           sauce.likes += req.body.like
           }
      
-//  is canceling their like or dislike
+
           else if (req.body.like == 0) {
             if (sauce.usersLiked.includes(req.body.userId)) {
                sauce.usersLiked = sauce.usersLiked.filter(like => like != req.body.userId);
@@ -161,7 +161,7 @@ exports.likeSauces = (req, res, next) => {
            }
           }
       
-        //dislikes the sauce    
+         
           else if (req.body.like == -1) {
           sauce.usersDisliked.push(req.body.userId)
           sauce.dislikes += 1
